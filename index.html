@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Fallback values: js/main.js replaces them with the ones in data/info.json -->
+  <title>Mariana Fuentes — Diseñadora UX/UI</title>
+  <meta name="description" content="Portfolio de Mariana Fuentes, diseñadora UX/UI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Syncopate:wght@400;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Order matters: main.js uses getInfo() from storage.js -->
+  <script src="js/storage.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- All the content comes from data/info.json and is rendered by js/main.js.
+       This file is only the skeleton: one empty container per section. -->
+
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <a id="logo" class="logo" href="#top"></a>
+
+    <!-- In F3 this button will open the full-screen overlay menu -->
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      Menú
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Navegación principal">
+      <ul id="nav-list"></ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <noscript>
+      <p class="page-status">Este sitio necesita JavaScript para mostrar su contenido.</p>
+    </noscript>
+
+    <section id="top" class="hero" aria-labelledby="hero-title"></section>
+    <section id="about" class="about" aria-labelledby="about-title"></section>
+    <section id="skills" class="skills" aria-labelledby="skills-title"></section>
+    <section id="services" class="services" aria-labelledby="services-title"></section>
+    <section id="projects" class="projects" aria-labelledby="projects-title"></section>
+    <section id="process" class="process" aria-labelledby="process-title"></section>
+    <section id="lab" class="lab" aria-labelledby="lab-title"></section>
+    <section id="faq" class="faq" aria-labelledby="faq-title"></section>
+    <section id="contact" class="contact" aria-labelledby="contact-title"></section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="site-footer" class="site-footer"></footer>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+{
+  "meta": {
+    "title": "Mariana Fuentes — Diseñadora UX/UI",
+    "description": "Portfolio de Mariana Fuentes, diseñadora UX/UI. Proyectos de diseño de interfaces, 3D e ilustración."
+  },
+
+  "profile": {
+    "name": "Mariana Fuentes",
+    "initials": "MF",
+    "role": "Diseñadora UX/UI",
+    "tagline": "Creando experiencias digitales que se sienten.",
+    "email": "TODO@email.com"
+  },
+
+  "nav": [
+    { "label": "Sobre mí", "target": "about" },
+    { "label": "Proyectos", "target": "projects" },
+    { "label": "Proceso", "target": "process" },
+    { "label": "Lab", "target": "lab" },
+    { "label": "FAQ", "target": "faq" },
+    { "label": "Contacto", "target": "contact" }
+  ],
+
+  "hero": {
+    "ctaLabel": "Ver proyectos",
+    "ctaTarget": "projects",
+    "model": {
+      "src": "",
+      "alt": "Objeto 3D modelado en Blender"
+    }
+  },
+
+  "about": {
+    "title": "Sobre mí",
+    "photo": "https://placehold.co/480x600/15151d/b9a7ff?text=Foto",
+    "photoAlt": "Retrato de Mariana Fuentes",
+    "paragraphs": [
+      "TODO: bio de 2–3 líneas. Quién eres, qué estudias y qué tipo de proyectos te mueven.",
+      "Estudiante de Creación Digital. TODO: universidad / ciudad."
+    ]
+  },
+
+  "skills": {
+    "title": "Herramientas",
+    "items": ["HTML", "CSS", "Blender", "Illustrator", "Photoshop", "Figma"]
+  },
+
+  "services": {
+    "title": "Lo que hago",
+    "items": [
+      {
+        "title": "Diseño UX/UI",
+        "description": "Investigación, arquitectura de información, wireframes y prototipos en Figma."
+      },
+      {
+        "title": "Experiencias 3D",
+        "description": "Modelado y render en Blender para web, producto y piezas visuales."
+      },
+      {
+        "title": "Ilustración y gráfica",
+        "description": "Piezas en Illustrator y Photoshop para identidad y redes."
+      },
+      {
+        "title": "Maquetación web",
+        "description": "Diseños llevados a HTML y CSS, responsive y accesibles."
+      }
+    ]
+  },
+
+  "projects": {
+    "title": "Proyectos destacados",
+    "items": [
+      {
+        "id": "case-1",
+        "title": "TODO: Proyecto 1",
+        "category": "UX/UI",
+        "tools": ["Figma"],
+        "year": 2026,
+        "role": "TODO: tu rol",
+        "cover": "https://placehold.co/800x600/15151d/b9a7ff?text=Proyecto+1",
+        "coverAlt": "TODO: describe la imagen de portada",
+        "challenge": "TODO: qué problema resolvía.",
+        "process": "TODO: proceso y decisiones clave.",
+        "result": "TODO: qué se logró o qué aprendiste.",
+        "link": "",
+        "featured": true
+      },
+      {
+        "id": "case-2",
+        "title": "TODO: Proyecto 2",
+        "category": "3D",
+        "tools": ["Blender"],
+        "year": 2026,
+        "role": "TODO: tu rol",
+        "cover": "https://placehold.co/800x600/15151d/b9a7ff?text=Proyecto+2",
+        "coverAlt": "TODO: describe la imagen de portada",
+        "challenge": "TODO",
+        "process": "TODO",
+        "result": "TODO",
+        "link": "",
+        "featured": true
+      },
+      {
+        "id": "case-3",
+        "title": "TODO: Proyecto 3",
+        "category": "Ilustración",
+        "tools": ["Illustrator", "Photoshop"],
+        "year": 2026,
+        "role": "TODO: tu rol",
+        "cover": "https://placehold.co/800x600/15151d/b9a7ff?text=Proyecto+3",
+        "coverAlt": "TODO: describe la imagen de portada",
+        "challenge": "TODO",
+        "process": "TODO",
+        "result": "TODO",
+        "link": "",
+        "featured": true
+      },
+      {
+        "id": "case-4",
+        "title": "TODO: Proyecto 4 (oculto)",
+        "category": "Web",
+        "tools": ["HTML", "CSS"],
+        "year": 2025,
+        "role": "TODO: tu rol",
+        "cover": "https://placehold.co/800x600/15151d/b9a7ff?text=Proyecto+4",
+        "coverAlt": "TODO: describe la imagen de portada",
+        "challenge": "TODO",
+        "process": "TODO",
+        "result": "TODO",
+        "link": "",
+        "featured": false
+      }
+    ]
+  },
+
+  "process": {
+    "title": "Mi proceso",
+    "steps": [
+      { "title": "Investigar", "description": "Entender a las personas usuarias, el contexto y el problema real." },
+      { "title": "Definir", "description": "Ordenar hallazgos y fijar objetivos claros para el diseño." },
+      { "title": "Idear", "description": "Bocetos, referencias y varias rutas antes de elegir una." },
+      { "title": "Prototipar", "description": "Wireframes y prototipos interactivos en Figma." },
+      { "title": "Testear", "description": "Probar con usuarios, iterar y refinar los detalles." }
+    ]
+  },
+
+  "lab": {
+    "title": "Lab",
+    "intro": "Experimentos, renders y piezas sueltas.",
+    "items": [
+      { "image": "https://placehold.co/600x600/15151d/b9a7ff?text=Lab+1", "alt": "TODO: describe la pieza", "caption": "TODO: render Blender" },
+      { "image": "https://placehold.co/600x600/15151d/b9a7ff?text=Lab+2", "alt": "TODO: describe la pieza", "caption": "TODO: ilustración" },
+      { "image": "https://placehold.co/600x600/15151d/b9a7ff?text=Lab+3", "alt": "TODO: describe la pieza", "caption": "TODO: experimento" },
+      { "image": "https://placehold.co/600x600/15151d/b9a7ff?text=Lab+4", "alt": "TODO: describe la pieza", "caption": "TODO: experimento" }
+    ]
+  },
+
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      { "question": "¿Estás disponible para proyectos freelance?", "answer": "TODO: sí / no / desde cuándo." },
+      { "question": "¿Qué entregas en un proyecto de UX/UI?", "answer": "TODO: por ejemplo, investigación, wireframes, prototipo en Figma y guía de estilos." },
+      { "question": "¿También desarrollas la web?", "answer": "TODO: maqueto en HTML y CSS; para proyectos complejos trabajo con desarrolladores." }
+    ]
+  },
+
+  "contact": {
+    "title": "¿Hablamos?",
+    "text": "Cuéntame tu idea y armamos algo juntos.",
+    "ctaLabel": "Escríbeme",
+    "social": [
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/TODO" },
+      { "label": "Behance", "url": "https://www.behance.net/TODO" },
+      { "label": "Instagram", "url": "https://www.instagram.com/TODO" }
+    ]
+  },
+
+  "footer": {
+    "backToTop": "Volver arriba ↑"
+  }
+}

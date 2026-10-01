@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión — Portfolio</title>
+  <!-- Admin page: keep it out of Google -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Syncopate:wght@400;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Order matters: gestion.js uses storage.js and credentials.js -->
+  <script src="js/storage.js" defer></script>
+  <script src="js/credentials.js" defer></script>
+  <script src="js/gestion.js" defer></script>
+</head>
+<body class="admin">
+
+  <!-- ===== LOGIN ===== -->
+  <section id="login" class="login">
+    <h1>Gestión</h1>
+    <form id="login-form" class="admin-form">
+      <label>
+        Usuario
+        <input type="text" id="login-user" autocomplete="username" required>
+      </label>
+      <label>
+        Contraseña
+        <input type="password" id="login-password" autocomplete="current-password" required>
+      </label>
+      <p id="login-error" class="form-error" hidden>Usuario o contraseña incorrectos</p>
+      <button class="btn" type="submit">Ingresar</button>
+    </form>
+  </section>
+
+  <!-- ===== ADMIN PANEL (visible after login) ===== -->
+  <div class="admin-layout" hidden>
+    <aside class="admin-sidebar">
+      <p class="logo">MF</p>
+      <h2>Gestión</h2>
+      <nav class="sidebar-nav" aria-label="Paneles de gestión">
+        <button class="sidebar-item" type="button" data-panel="create">Crear</button>
+        <button class="sidebar-item" type="button" data-panel="list">Mostrar todos</button>
+        <button class="sidebar-item" type="button" data-panel="update">Actualizar</button>
+        <button class="sidebar-item" type="button" data-panel="delete">Eliminar</button>
+        <button class="sidebar-item" type="button" data-panel="profile">Perfil</button>
+      </nav>
+      <a class="sidebar-link" href="index.html" target="_blank">Ver portfolio ↗</a>
+      <button id="btn-reset" class="sidebar-reset" type="button">Restablecer datos</button>
+    </aside>
+
+    <main class="admin-content">
+      <!-- Feedback after saving / deleting. role="status" is read by screen readers -->
+      <p id="admin-message" class="admin-message" role="status" hidden></p>
+
+      <!-- Create / edit project -->
+      <section id="panel-create" class="panel">
+        <h1 id="project-form-title">Crear proyecto</h1>
+        <form id="project-form" class="admin-form">
+          <label>
+            Título
+            <input type="text" id="input-title" required>
+          </label>
+          <div class="form-row">
+            <label>
+              Categoría
+              <input type="text" id="input-category" placeholder="UX/UI, 3D, Ilustración…" required>
+            </label>
+            <label>
+              Año
+              <input type="number" id="input-year" min="2000" max="2100" required>
+            </label>
+          </div>
+          <label>
+            Herramientas <small>(separadas por coma)</small>
+            <input type="text" id="input-tools" placeholder="Figma, Illustrator">
+          </label>
+          <label>
+            Tu rol
+            <input type="text" id="input-role">
+          </label>
+          <label>
+            URL de la imagen de portada
+            <input type="url" id="input-cover" required>
+          </label>
+          <label>
+            Texto alternativo de la portada <small>(describe la imagen)</small>
+            <input type="text" id="input-cover-alt">
+          </label>
+          <label>
+            El reto
+            <textarea id="input-challenge" rows="3"></textarea>
+          </label>
+          <label>
+            Lo que hice
+            <textarea id="input-process" rows="3"></textarea>
+          </label>
+          <label>
+            Resultado
+            <textarea id="input-result" rows="3"></textarea>
+          </label>
+          <label>
+            Link externo <small>(opcional)</small>
+            <input type="url" id="input-link" placeholder="https://">
+          </label>
+          <label class="check">
+            <input type="checkbox" id="input-featured" checked>
+            Destacado (aparece en la home)
+          </label>
+          <div class="form-actions">
+            <button class="btn" type="submit" id="btn-submit">Agregar proyecto</button>
+            <button class="btn btn-ghost" type="button" id="btn-cancel" hidden>Cancelar edición</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="panel-list" class="panel" hidden>
+        <h1>Todos los proyectos</h1>
+        <ul id="list-show" class="admin-list"></ul>
+      </section>
+
+      <section id="panel-update" class="panel" hidden>
+        <h1>Actualizar proyecto</h1>
+        <ul id="list-update" class="admin-list"></ul>
+      </section>
+
+      <section id="panel-delete" class="panel" hidden>
+        <h1>Eliminar proyecto</h1>
+        <ul id="list-delete" class="admin-list"></ul>
+      </section>
+
+      <!-- Profile -->
+      <section id="panel-profile" class="panel" hidden>
+        <h1>Perfil</h1>
+        <form id="profile-form" class="admin-form">
+          <div class="form-row">
+            <label>
+              Nombre
+              <input type="text" id="input-name" required>
+            </label>
+            <label>
+              Iniciales (logo)
+              <input type="text" id="input-initials" maxlength="4" required>
+            </label>
+          </div>
+          <label>
+            Rol
+            <input type="text" id="input-profile-role" required>
+          </label>
+          <label>
+            Frase del hero
+            <input type="text" id="input-tagline">
+          </label>
+          <label>
+            Email de contacto
+            <input type="email" id="input-email" required>
+          </label>
+          <label>
+            Bio <small>(un párrafo por línea)</small>
+            <textarea id="input-bio" rows="5"></textarea>
+          </label>
+          <div class="form-actions">
+            <button class="btn" type="submit">Guardar perfil</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+</body>
+</html>

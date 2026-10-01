@@ -1,0 +1,876 @@
+/* =========================================
+   Portfolio — Mariana Fuentes
+   F2: visual system (colors, type, grain, layout), mobile-first.
+   ========================================= */
+
+/* ---------- 1. Design tokens ---------- */
+:root {
+  /* Colors — contrast checked against --color-bg (WCAG AA ≥ 4.5:1) */
+  --color-bg: #0b0b10;
+  --color-surface: #15151d;
+  --color-surface-hover: #1d1d28;
+  --color-text: #ecebf3;         /* ~16:1 */
+  --color-muted: #a9a7b8;        /* ~8:1  */
+  --color-accent: #b9a7ff;       /* lavender, ~9:1 */
+  --color-accent-strong: #d4c9ff;
+  --color-border: rgba(236, 235, 243, 0.12);
+
+  /* Type */
+  --font-display: "Syncopate", "Arial Black", sans-serif;
+  --font-body: "Rajdhani", "Segoe UI", system-ui, sans-serif;
+
+  /* Spacing & layout */
+  --gutter: clamp(1rem, 5vw, 3rem);
+  --section-space: clamp(4rem, 10vw, 8rem);
+  --max-width: 1200px;
+  --radius: 12px;
+  --header-height: 4.5rem;
+}
+
+/* ---------- 2. Reset & base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height); /* anchors don't hide under the fixed header */
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1.125rem; /* Rajdhani is narrow: a bit bigger reads better */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip; /* prevents sideways scroll from 100vw elements */
+}
+
+/* Grain texture: an SVG noise filter as a fixed overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* The `hidden` attribute only applies display:none by default — any CSS rule
+   with `display: grid/flex` would override it. This makes `hidden` always win. */
+[hidden] {
+  display: none !important;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* ---------- 3. Typography ---------- */
+/* Uppercase only on display titles (h1, h2) — body text stays sentence case */
+h1,
+h2 {
+  margin: 0 0 1.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h4 {
+  margin: 1.5rem 0 0.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+/* ---------- 4. Utilities & components ---------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 200;
+  padding: 0.5rem 1rem;
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.85rem 1.75rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: background-color 0.25s, color 0.25s;
+}
+.btn:hover {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.btn-large {
+  padding: 1.1rem 2.5rem;
+  font-size: 1.25rem;
+}
+
+/* Shared section layout */
+#main > section {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: var(--section-space) var(--gutter);
+}
+
+/* ---------- 5. Header & nav ---------- */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: var(--header-height);
+  padding-inline: var(--gutter);
+  background: rgba(11, 11, 16, 0.75);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: var(--color-accent);
+}
+
+/* Hidden until F3 turns the nav into a full-screen overlay */
+.menu-toggle {
+  display: none;
+}
+
+.site-nav {
+  overflow-x: auto; /* on small screens the links scroll sideways instead of breaking */
+}
+
+.site-nav ul {
+  display: flex;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  white-space: nowrap;
+}
+
+.site-nav a {
+  color: var(--color-muted);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.site-nav a:hover {
+  color: var(--color-text);
+}
+
+/* ---------- 6. Hero ---------- */
+.hero {
+  position: relative;
+  display: grid;
+  align-content: center;
+  gap: 2rem;
+  min-height: 100svh;
+  padding-top: calc(var(--header-height) + 2rem);
+}
+
+/* Light rays: soft lavender glows behind the hero */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 100vw; /* glow spans the full screen, not just the 1200px container */
+  transform: translateX(-50%);
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 60% 50% at 75% 40%, rgba(185, 167, 255, 0.18), transparent 70%),
+    radial-gradient(ellipse 40% 60% at 10% 90%, rgba(185, 167, 255, 0.08), transparent 70%);
+}
+
+.hero h1 {
+  margin-bottom: 1rem;
+}
+
+.hero-name {
+  display: block;
+  font-size: clamp(2.25rem, 8vw, 5.5rem);
+}
+
+.hero-role {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: clamp(0.9rem, 2.2vw, 1.4rem);
+  color: var(--color-accent);
+  letter-spacing: 0.2em;
+}
+
+.hero-tagline {
+  max-width: 32ch;
+  font-size: 1.35rem;
+  color: var(--color-muted);
+}
+
+.hero-3d {
+  margin: 0;
+}
+
+.hero-3d-placeholder {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  max-width: 420px;
+  margin-inline: auto;
+  border: 1px dashed var(--color-border);
+  border-radius: 50%;
+  color: var(--color-muted);
+  background: radial-gradient(circle, rgba(185, 167, 255, 0.15), transparent 65%);
+}
+
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-areas:
+      "title  model"
+      "tag    model"
+      "cta    model";
+    align-content: center;
+  }
+  .hero h1 { grid-area: title; align-self: end; }
+  .hero-tagline { grid-area: tag; }
+  .hero .btn { grid-area: cta; justify-self: start; align-self: start; }
+  .hero-3d { grid-area: model; align-self: center; }
+}
+
+/* ---------- 7. About ---------- */
+.about {
+  display: grid;
+  gap: 2rem;
+}
+
+.about h2 {
+  grid-column: 1 / -1;
+}
+
+.about-photo {
+  margin: 0;
+}
+.about-photo img {
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+}
+
+.about-text {
+  font-size: 1.25rem;
+  color: var(--color-muted);
+}
+
+@media (min-width: 768px) {
+  .about {
+    grid-template-columns: 1fr 1.5fr;
+    align-items: center;
+  }
+}
+
+/* ---------- 8. Skills marquee (animation in F3) ---------- */
+#main > section.skills {
+  max-width: none;
+  padding-block: 1.5rem;
+  border-block: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.marquee {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem 3rem;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  text-transform: uppercase;
+}
+
+.marquee li::before {
+  content: "✦ ";
+  color: var(--color-accent);
+}
+
+/* ---------- 9. Services ---------- */
+.services-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.services-list li {
+  padding: 1.75rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.services-list p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+/* ---------- 10. Projects ---------- */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.page-status {
+  padding: calc(var(--header-height) + 2rem) var(--gutter);
+  text-align: center;
+}
+
+.projects-status {
+  grid-column: 1 / -1;
+  color: var(--color-muted);
+}
+
+.project-card a {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: transform 0.3s, border-color 0.3s, background-color 0.3s;
+}
+
+.project-card a:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+  background: var(--color-surface-hover);
+}
+
+.project-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.project-card h3 {
+  margin: 1.25rem 1.25rem 0.25rem;
+}
+
+.project-meta {
+  margin: 0 1.25rem 1.25rem;
+  color: var(--color-accent);
+  font-size: 1rem;
+}
+
+/* Cases: hidden until their #id is the URL target (works without JS).
+   F3 will replace this with a side panel. */
+.case {
+  display: none;
+  margin-top: 2.5rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius);
+}
+
+.case:target {
+  display: block;
+}
+
+.case h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  text-transform: uppercase;
+}
+
+.case-facts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 1.5rem;
+  margin: 1rem 0 0;
+}
+.case-facts dt {
+  color: var(--color-muted);
+}
+.case-facts dd {
+  margin: 0;
+}
+
+.case p {
+  max-width: 65ch;
+}
+
+.case .btn {
+  margin-top: 1rem;
+}
+
+.case-back {
+  display: inline-block;
+  margin-top: 1.5rem;
+  margin-left: 1rem;
+  color: var(--color-muted);
+}
+
+/* ---------- 11. Process ---------- */
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+  counter-reset: step;
+}
+
+.process-steps li {
+  counter-increment: step;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+}
+
+/* Auto-numbering 01, 02, 03… from the <ol> order */
+.process-steps li::before {
+  content: counter(step, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-accent);
+}
+
+.process-steps p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+/* ---------- 12. Lab ---------- */
+.lab > p {
+  color: var(--color-muted);
+}
+
+.lab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .lab-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.lab-grid figure {
+  margin: 0;
+}
+
+.lab-grid img {
+  border-radius: var(--radius);
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.lab-grid figcaption {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--color-muted);
+}
+
+/* ---------- 13. FAQ ---------- */
+.faq details {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none; /* hides the default triangle */
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  color: var(--color-accent);
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: transform 0.25s;
+}
+.faq details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq details p {
+  max-width: 65ch;
+  color: var(--color-muted);
+}
+
+/* ---------- 14. Contact & footer ---------- */
+.contact {
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: clamp(2rem, 7vw, 4.5rem);
+}
+
+.contact > p {
+  font-size: 1.35rem;
+  color: var(--color-muted);
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.social-links a {
+  color: var(--color-muted);
+  transition: color 0.2s;
+}
+.social-links a:hover {
+  color: var(--color-accent);
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 2rem var(--gutter);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 1rem;
+}
+.site-footer p {
+  margin: 0;
+}
+
+/* ---------- 15. Admin (gestion.html) ---------- */
+.admin h1 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+/* Buttons used in the admin need to look like buttons, not links */
+button.btn {
+  background: transparent;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-small {
+  padding: 0.4rem 1rem;
+  font-size: 1rem;
+}
+
+.btn-ghost {
+  border-color: var(--color-border);
+  color: var(--color-muted);
+}
+
+.btn-danger {
+  border-color: #ff8a8a;
+  color: #ff8a8a;
+}
+.btn-danger:hover {
+  background: #ff8a8a;
+  color: var(--color-bg);
+}
+
+/* Login */
+.login {
+  display: grid;
+  place-content: center;
+  min-height: 100svh;
+  padding: var(--gutter);
+}
+
+.login .admin-form {
+  width: min(360px, 100%);
+}
+
+.form-error {
+  margin: 0;
+  color: #ff8a8a;
+}
+
+/* Layout: sidebar + content (stacked on mobile) */
+.admin-layout {
+  display: grid;
+  min-height: 100svh;
+}
+
+@media (min-width: 900px) {
+  .admin-layout {
+    grid-template-columns: 260px 1fr;
+  }
+}
+
+.admin-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem var(--gutter);
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+}
+
+.admin-sidebar .logo {
+  margin: 0;
+}
+
+.admin-sidebar h2 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--color-muted);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@media (min-width: 900px) {
+  .sidebar-nav {
+    flex-direction: column;
+  }
+}
+
+.sidebar-item {
+  padding: 0.6rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-muted);
+  font: inherit;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+.sidebar-item:hover {
+  color: var(--color-text);
+  background: var(--color-surface-hover);
+}
+.sidebar-item.active {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.sidebar-link {
+  color: var(--color-muted);
+}
+
+.sidebar-reset {
+  margin-top: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #ff8a8a;
+  font: inherit;
+  text-align: left;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.admin-content {
+  padding: 2rem var(--gutter) 4rem;
+  max-width: 820px;
+}
+
+.admin-message {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 8px;
+  color: var(--color-accent);
+}
+
+/* Forms */
+.admin-form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.admin-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.admin-form small {
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+.admin-form input:not([type="checkbox"]),
+.admin-form textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: inherit;
+  font-weight: 400;
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus {
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+.admin-form textarea {
+  resize: vertical;
+}
+
+.form-row {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 600px) {
+  .form-row {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.admin-form label.check {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 500;
+}
+
+.admin-form input[type="checkbox"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--color-accent);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Project lists */
+.admin-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.admin-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.admin-item img {
+  flex-shrink: 0;
+  width: 80px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.admin-item-info {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-item-info span {
+  font-size: 1rem;
+  color: var(--color-muted);
+}
+
+.admin-empty {
+  color: var(--color-muted);
+}
+
+/* ---------- 16. Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
