@@ -32,11 +32,11 @@
 
   "about": {
     "title": "Sobre mí",
-    "photo": "https://placehold.co/480x600/15151d/b9a7ff?text=Foto",
-    "photoAlt": "Retrato de Mariana Fuentes",
+    "photo": "assets/img/mariana.jpg",
+    "photoAlt": "Mariana Fuentes sonriendo, sentada en una terraza con plantas y edificios de ladrillo al fondo",
     "paragraphs": [
-      "TODO: bio de 2–3 líneas. Quién eres, qué estudias y qué tipo de proyectos te mueven.",
-      "Estudiante de Creación Digital. TODO: universidad / ciudad."
+      "Me gusta mucho diseñar experiencias que transformen, darle vida a los diseños y la fotografía.",
+      "Estudiante de Creación Digital en la Universidad El Bosque."
     ]
   },
 
@@ -77,7 +77,7 @@
         "tools": ["Figma"],
         "year": 2026,
         "role": "TODO: tu rol",
-        "cover": "https://placehold.co/800x600/15151d/b9a7ff?text=Proyecto+1",
+        "cover": "https://placehold.co/800x600/0a1c4a/fffde2?text=Proyecto+1",
         "coverAlt": "TODO: describe la imagen de portada",
         "challenge": "TODO: qué problema resolvía.",
         "process": "TODO: proceso y decisiones clave.",
@@ -92,8 +92,8 @@
         "tools": ["Blender"],
         "year": 2026,
         "role": "TODO: tu rol",
-        "cover": "https://placehold.co/800x600/15151d/b9a7ff?text=Proyecto+2",
-        "coverAlt": "TODO: describe la imagen de portada",
+        "cover": "assets/img/proyecto-2.jpg",
+        "coverAlt": "Render 3D de un celular rodeado de un check verde, burbujas de chat y una estrella",
         "challenge": "TODO",
         "process": "TODO",
         "result": "TODO",
@@ -107,7 +107,7 @@
         "tools": ["Illustrator", "Photoshop"],
         "year": 2026,
         "role": "TODO: tu rol",
-        "cover": "https://placehold.co/800x600/15151d/b9a7ff?text=Proyecto+3",
+        "cover": "https://placehold.co/800x600/0a1c4a/fffde2?text=Proyecto+3",
         "coverAlt": "TODO: describe la imagen de portada",
         "challenge": "TODO",
         "process": "TODO",
@@ -122,7 +122,7 @@
         "tools": ["HTML", "CSS"],
         "year": 2025,
         "role": "TODO: tu rol",
-        "cover": "https://placehold.co/800x600/15151d/b9a7ff?text=Proyecto+4",
+        "cover": "https://placehold.co/800x600/0a1c4a/fffde2?text=Proyecto+4",
         "coverAlt": "TODO: describe la imagen de portada",
         "challenge": "TODO",
         "process": "TODO",
@@ -148,10 +148,10 @@
     "title": "Lab",
     "intro": "Experimentos, renders y piezas sueltas.",
     "items": [
-      { "image": "https://placehold.co/600x600/15151d/b9a7ff?text=Lab+1", "alt": "TODO: describe la pieza", "caption": "TODO: render Blender" },
-      { "image": "https://placehold.co/600x600/15151d/b9a7ff?text=Lab+2", "alt": "TODO: describe la pieza", "caption": "TODO: ilustración" },
-      { "image": "https://placehold.co/600x600/15151d/b9a7ff?text=Lab+3", "alt": "TODO: describe la pieza", "caption": "TODO: experimento" },
-      { "image": "https://placehold.co/600x600/15151d/b9a7ff?text=Lab+4", "alt": "TODO: describe la pieza", "caption": "TODO: experimento" }
+      { "video": "assets/videos/animacion-blender.mp4", "image": "https://placehold.co/600x600/0a1c4a/fffde2?text=Lab+1", "alt": "TODO: describe la animación", "caption": "Animación en Blender" },
+      { "image": "https://placehold.co/600x600/0a1c4a/fffde2?text=Lab+2", "alt": "TODO: describe la pieza", "caption": "TODO: ilustración" },
+      { "image": "https://placehold.co/600x600/0a1c4a/fffde2?text=Lab+3", "alt": "TODO: describe la pieza", "caption": "TODO: experimento" },
+      { "image": "https://placehold.co/600x600/0a1c4a/fffde2?text=Lab+4", "alt": "TODO: describe la pieza", "caption": "TODO: experimento" }
     ]
   },
 

@@ -11,6 +11,7 @@ data/info.json    → TODO el contenido del sitio
 css/style.css     → estilos (portfolio + gestión)
 js/storage.js     → getInfo / saveInfo / resetInfo (localStorage → info.json)
 js/main.js        → renderiza cada sección del portfolio
+js/effects.js     → animaciones e interacciones (cursor, menú, marquee, panel de casos, scroll…)
 js/gestion.js     → lógica del panel de gestión
 js/credentials.js → usuario y contraseña del panel
 ```
@@ -26,11 +27,21 @@ El sitio carga `data/info.json` con `fetch()`, y el navegador lo bloquea si se a
 
 > El login de `gestion.html` está escrito en `js/credentials.js`, así que cualquiera puede leerlo con las DevTools. Solo oculta el panel; no es seguridad real.
 
+## Cómo agregar un video al Lab (p. ej. una animación de Blender)
+
+1. Guarda el video en `assets/videos/` (formato `.mp4`, idealmente cuadrado, sin audio y de menos de 10 MB).
+2. En `data/info.json`, dentro de `lab.items`, agrega `"video"` al elemento:
+   ```json
+   { "video": "assets/videos/animacion-blender.mp4", "image": "assets/img/poster.jpg", "alt": "Qué se ve en la animación", "caption": "Animación en Blender" }
+   ```
+   `image` es la imagen que se ve mientras el video carga (el póster).
+3. El video se reproduce en bucle y sin sonido solo mientras está en pantalla.
+
 ## Estado
 
 - [x] F1: estructura HTML semántica
 - [x] F2: sistema visual (CSS)
 - [x] Contenido en JSON + panel de gestión
-- [ ] F3: interacciones (menú overlay, panel lateral de casos, marquee, preloader)
+- [x] F3: interacciones (menú overlay, panel lateral de casos, marquee, cursor, reveals al hacer scroll)
 - [ ] F4: modelo 3D del hero (`<model-viewer>` + `.glb` de Blender)
 - [ ] F5: revisión de accesibilidad y publicación en GitHub Pages
