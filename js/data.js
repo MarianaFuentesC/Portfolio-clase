@@ -49,7 +49,7 @@ export const chapters = [
     works: [
       { title: 'Olivia Rodrigo · Estéreo Picnic', type: 'Rediseño de poster', year: 2026, ratio: '1587/2245', tone: '#d9b8ee', full: true, image: 'assets/img/poster-olivia-estereo.jpg', link: '' },
       { title: 'Coca-Cola Lima', type: 'Publicidad · Ilustración', year: 2026, ratio: '16/9', tone: '#eef5e4', full: true, image: 'assets/img/publicidad-cocacola.jpg', link: '' },
-      { title: 'Rockettes · Christmas Spectacular', type: 'Poster', year: 2026, ratio: '1587/2245', tone: '#6b5a3e', full: true, image: 'assets/img/poster-rockettes.jpg', link: '' },
+      { title: 'Flowers Shop', type: 'Poster', year: 2026, ratio: '1610/2400', tone: '#f6ebe3', full: true, image: 'assets/img/poster-flower-shop.jpg', link: '' },
     ],
   },
   {
@@ -75,7 +75,7 @@ export const chapters = [
     works: [
       { title: 'Retrato urbano', type: 'Fotografía', year: 2026, ratio: '4/5', tone: '#3a3a3a', image: '', link: '' },
       { title: 'Producto en estudio', type: 'Foto de producto', year: 2025, ratio: '1/1', tone: '#55483a', image: '', link: '' },
-      { title: 'Corto experimental', type: 'Video · Edición', year: 2025, ratio: '16/9', tone: '#28323a', image: '', link: '' },
+      { title: 'Corto', type: 'Video · Edición', year: 2026, ratio: '16/9', tone: '#28323a', full: true, video: 'assets/videos/corto.mp4', image: '', link: '' },
     ],
   },
   {
