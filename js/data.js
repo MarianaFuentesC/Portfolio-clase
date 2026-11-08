@@ -16,15 +16,12 @@ export const profile = {
   disciplines: ['UI/UX', 'Posters', 'Contenido', '3D'],
   bio: 'Estudio Creación Digital en la Universidad El Bosque. Diseño todo lo que vive en una pantalla: interfaces, piezas gráficas, contenido y objetos 3D.',
   location: 'Bogotá, CO',
-  email: 'TODO@email.com',
+  email: 'marianafc05@icloud.com',
+  phone: '302 312 9387',
   photo: 'assets/img/mariana.jpg',
   // parte de la foto que se vuelve partículas al inicio: [x, y, ancho, alto] en fracciones (0–1)
   photoCrop: [0.31, 0.29, 0.36, 0.3],
-  socials: [
-    { label: 'Instagram', url: 'https://www.instagram.com/TODO' },
-    { label: 'Behance', url: 'https://www.behance.net/TODO' },
-    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/TODO' },
-  ],
+  socials: [],
 };
 
 // shape: laptop | poster | phone | camera | light  (formas incluidas)

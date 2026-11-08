@@ -105,13 +105,13 @@ main { position: relative; z-index: 1; }
 }
 .is-ready .loader { opacity: 0; visibility: hidden; }
 .loader-inner { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; justify-content: center; }
+.loader-label { color: var(--muted); }
 .rec { display: inline-flex; align-items: center; gap: 8px; }
 .rec i, .hud-dot {
   width: 8px; height: 8px; border-radius: 50%;
   background: var(--accent);
   animation: blink 1s steps(2, start) infinite;
 }
-.loader-label { color: var(--muted); }
 @keyframes blink { to { visibility: hidden; } }
 
 /* =========================================================

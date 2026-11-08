@@ -38,11 +38,12 @@ function renderPage() {
   const total = chapters.length;
   const contactList = `
     <li><a href="mailto:${esc(profile.email)}">${esc(profile.email)}</a></li>
+    <li><a href="tel:+57${esc(profile.phone.replace(/ /g, ''))}">Cel. ${esc(profile.phone)}</a></li>
     ${profile.socials.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a></li>`).join('')}`;
 
   const hero = `
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <p class="hero-kicker">Portafolio ${new Date().getFullYear()} <span>—</span> ${esc(profile.location)}</p>
+      <p class="hero-kicker">${esc(profile.location)}</p>
       <h1 class="hero-name" id="hero-title">
         <span class="line">${splitChars(profile.firstName)}</span>
         <span class="line serif">${splitChars(profile.lastName, profile.firstName.length)}</span>
@@ -80,6 +81,7 @@ function renderPage() {
           <p class="label" id="contact-title">¿Hacemos algo juntos?</p>
           <a class="contact-email" href="mailto:${esc(profile.email)}">${esc(profile.email)}</a>
           <ul class="contact-socials">
+            <li><a href="tel:+57${esc(profile.phone.replace(/ /g, ''))}">Cel. ${esc(profile.phone)}</a></li>
             ${profile.socials.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a></li>`).join('')}
           </ul>
         </div>
