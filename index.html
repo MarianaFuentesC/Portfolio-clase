@@ -3,70 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Fallback values: js/main.js replaces them with the ones in data/info.json -->
-  <title>Mariana Fuentes — Diseñadora UX/UI</title>
-  <meta name="description" content="Portfolio de Mariana Fuentes, diseñadora UX/UI.">
+  <title>Mariana Fuentes — Creación Digital</title>
+  <meta name="description" content="Portafolio de Mariana Fuentes: UI/UX, posters, contenido y 3D.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="css/style.css">
-  <!-- Order matters: main.js uses getInfo() from storage.js,
-       effects.js uses the DOM that main.js renders -->
-  <script src="js/storage.js" defer></script>
-  <script src="js/main.js" defer></script>
-  <script src="js/effects.js" defer></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="css/portfolio.css">
+  <script>
+    // Apply the saved theme before paint to avoid a flash
+    try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="js/app.js"></script>
 </head>
 <body>
-
-  <!-- All the content comes from data/info.json and is rendered by js/main.js.
-       This file is only the skeleton: one empty container per section. -->
-
   <a class="skip-link" href="#main">Saltar al contenido</a>
 
-  <!-- ===== CURSOR + SCROLL PROGRESS (decorative, mouse only) ===== -->
-  <div class="cursor" aria-hidden="true"><span class="cursor-label"></span></div>
-  <div class="scroll-progress" aria-hidden="true"></div>
+  <!-- Loader: "grabando" mientras se arma la escena -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <span class="rec"><i></i>REC</span>
+      <span class="loader-time" id="loader-time">00:00:00:00</span>
+      <span class="loader-label">Armando el set</span>
+    </div>
+  </div>
 
-  <!-- ===== HEADER ===== -->
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="cursor" aria-hidden="true"><span class="cursor-label">ver</span></div>
+
   <header class="site-header">
-    <a id="logo" class="logo" href="#top"></a>
-
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-      <span class="menu-toggle-text" data-open="Menú" data-close="Cerrar">Menú</span>
-      <span class="menu-toggle-icon" aria-hidden="true"></span>
-    </button>
-
-    <nav id="site-nav" class="site-nav" aria-label="Navegación principal">
-      <ul id="nav-list"></ul>
-      <p class="site-nav-footer" id="nav-footer"></p>
+    <a class="logo" href="#top" id="logo">MF</a>
+    <nav class="site-nav" aria-label="Principal">
+      <a href="#web">Trabajo</a>
+      <a href="#contact">Contacto</a>
+      <button class="theme-toggle" type="button" aria-label="Cambiar luz (modo claro / oscuro)">
+        <span class="bulb" aria-hidden="true"></span><span class="theme-text">Luz</span>
+      </button>
     </nav>
   </header>
 
-  <main id="main">
-    <noscript>
-      <p class="page-status">Este sitio necesita JavaScript para mostrar su contenido.</p>
-    </noscript>
+  <!-- Todo el contenido se genera desde js/data.js -->
+  <main id="main"></main>
 
-    <section id="top" class="hero" aria-labelledby="hero-title"></section>
-    <section id="about" class="about" aria-labelledby="about-title"></section>
-    <section id="skills" class="skills" aria-labelledby="skills-title"></section>
-    <section id="services" class="services" aria-labelledby="services-title"></section>
-    <section id="projects" class="projects" aria-labelledby="projects-title"></section>
-    <section id="process" class="process" aria-labelledby="process-title"></section>
-    <section id="lab" class="lab" aria-labelledby="lab-title"></section>
-    <section id="faq" class="faq" aria-labelledby="faq-title"></section>
-    <section id="contact" class="contact" aria-labelledby="contact-title"></section>
-  </main>
-
-  <!-- ===== PROJECT SIDE PANEL (case studies open here) ===== -->
-  <div class="case-backdrop" hidden></div>
-  <aside class="case-panel" id="case-panel" aria-label="Caso de estudio" hidden>
-    <button class="case-close" type="button">Cerrar <span aria-hidden="true">✕</span></button>
-    <div class="case-panel-body"></div>
-  </aside>
-
-  <!-- ===== FOOTER ===== -->
-  <footer id="site-footer" class="site-footer"></footer>
-
+  <div class="hud" aria-hidden="true">
+    <span class="hud-index" id="hud-index">00/06</span>
+    <span class="hud-dot"></span>
+    <span class="hud-label" id="hud-label">Materia prima</span>
+  </div>
+  <div class="hud-progress" aria-hidden="true"><span id="hud-bar"></span></div>
 </body>
 </html>
